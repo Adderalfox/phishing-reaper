@@ -4,7 +4,7 @@ from src.models.lstm_generator import URLDataset
 from src.models.lstm_generator import LSTMGenerator
 from torch.utils.data import DataLoader
 
-def train_model(urls, num_epochs=10, seq_length=20, batch_size=16, lr=0.003, model_path="lstm_model.pth"):
+def train_model(urls, num_epochs=10, seq_length=20, batch_size=16, lr=0.003, model_path="../saved_models/lstm_model.pth"):
     chars = sorted(set("".join(urls)))
     char_to_idx = {c: i+1 for i, c in enumerate(chars)}
     idx_to_char = {i: c for c, i in char_to_idx.items()}
@@ -24,7 +24,7 @@ def train_model(urls, num_epochs=10, seq_length=20, batch_size=16, lr=0.003, mod
         total_loss = 0
         for x, y in dataloader:
             x, y = x.to(device), y.to(device)
-            optmizer.zero_grad()
+            optimizer.zero_grad()
             outputs, _ = model(x)
             loss = criterion(outputs.reshape(-1, outputs.size(-1)), y.reshape(-1))
             loss.backward()
