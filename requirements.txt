@@ -19,3 +19,8 @@ wandb
 pyyaml
 loguru
 pytest
+tldextract
+tqdm
+sentence-transformers
+fuzzywuzzy
+python-Levenshtein
