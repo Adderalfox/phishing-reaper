@@ -12,6 +12,8 @@ brands = [
 SAVE_DIR = "src\saved_models"
 GENERATED_DIR = "data\generated"
 CRAWLER_SCRIPT = "src.crawler.crawler"
+RESULTS_DIR = "results\lstm_generator"
+CSV_PATH = "results\domains_found.csv"
 
 os.makedirs(GENERATED_DIR, exist_ok=True)
 
@@ -27,7 +29,7 @@ def main():
     for brand in brands:
         safe_brand = brand.replace(".", "_")  # e.g. airtel_in
         gen_csv = os.path.join(GENERATED_DIR, f"generated_{safe_brand}.csv")
-        out_csv = f"{safe_brand}.csv"
+        out_csv = os.path.join(RESULTS_DIR, f"result_{safe_brand}.csv")
 
         # Step 1: Run URL generator
         gen_cmd = (f"python -m src.data_pipeline.generate_urls --mode generate --save_dir {SAVE_DIR} --demo_brand {brand} --hidden 128 --temperature 1 --top_k 40 --top_p 0.95 --n_samples 200 --out_csv {gen_csv}")
@@ -38,6 +40,11 @@ def main():
         run_command(crawl_cmd)
 
         print(f"Finished processing {brand}: {gen_csv} → {out_csv}")
+
+    inference_cmd = (f"python -m src.inference.inference_cnnbilstm --csv {CSV_PATH}")
+    run_command(inference_cmd)
+
+    print("Finished Classification of candidate urls with output file results/url_predictions.csv")
 
 if __name__ == "__main__":
     main()

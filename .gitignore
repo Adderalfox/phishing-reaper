@@ -1,5 +1,8 @@
 .vscode
 mlruns
+data
+results
+src/saved_models
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
