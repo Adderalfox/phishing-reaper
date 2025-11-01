@@ -74,7 +74,7 @@ results/url_predictions.csv
 ```
 
 ## 🧾 License
-© 2025 Ritick Kalita. For evaluation use only.
+© 2025 Anuranan Chetia. For evaluation use only.
 
 ---
 
