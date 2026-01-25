@@ -1,6 +1,6 @@
-# 🛡️ Phishing Detection Tool (Dockerised)
+# Phishing Detection Tool (Dockerised)
 
-## 🚀 Overview
+## Overview
 This tool predicts phishing domains using:
 - **LSTM Generator** (candidate URL generation)
 - **CNN-BiLSTM Classifier** (phishing detection)
@@ -10,7 +10,7 @@ There are **two modes** of operation:
 
 ---
 
-### 🔹 1. LSTM Generation + Classification
+### 1. LSTM Generation + Classification
 Runs the full automated pipeline — generates URLs using the LSTM model, classifies them, and outputs predictions.
 
 **Command (inside Docker):**
@@ -29,18 +29,18 @@ python -m src.inference.inference_cnnbilstm --csv data/raw/Shortlisting_Dataset_
 python -m src.inference.inference_cnnbilstm --csv data/raw/Shortlisting_Dataset_part_2.csv
 ```
 
-## 🔹 3. Transformer-Based Mapping
+## 3. Transformer-Based Mapping
 After classification, map results to corresponding CSEs:
 ```bash
 python -m inference_transformer --csv results/url_predictions.csv
 ```
 
-## 🧱 Environment Requirements
+## Environment Requirements
 - Python 3.10+
 - Docker 20.10+
 - All dependencies listed in `requirements.txt`
 
-## 🐳 Running with Docker
+## Running with Docker
 
 ### 1️⃣ Build the Image
 ```bash
@@ -62,23 +62,23 @@ docker run phish-reaper python -m src.inference.inference_cnnbilstm --csv data/r
 docker run phish-reaper python -m inference_transformer --csv results/url_predictions.csv
 ```
 
-## 🧠 Models Used
+## Models Used
 - **CNN-BiLSTM** for phishing URL classification
 - **LSTM Generator** for candidate URL synthesis
 - **Transformer** for CSE mapping
 
-## 🧪 Output
+## Output
 Final phishing domain predictions are saved in:
 ```
 results/url_predictions.csv
 ```
 
-## 🧾 License
+## License
 © 2025 Anuranan Chetia. For evaluation use only.
 
 ---
 
-## 📄 **instructions.txt**
+## **instructions.txt**
 *(Plain text for submission — same info as README but simplified.)*
 
 ### Instructions to Execute the Dockerised Phishing Detection Tool
